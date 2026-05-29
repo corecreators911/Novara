@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+  body {
+    @apply bg-novara-bg font-DM_Sans text-novara-text;
+  }
+  h1, h2, h3 {
+    @apply font-DM_Serif_Display;
+  }
+}
