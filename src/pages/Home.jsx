@@ -133,7 +133,7 @@ const WhyChooseSection = () => (
   <section className="bg-white py-14 md:py-20">
     <div className="container mx-auto px-4 md:px-6">
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
-        <div className="relative order-2 lg:order-1">
+        <div className="relative order-2 lg:order-1 aspect-[4/3] overflow-hidden">
           <img 
             src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&auto=format&fit=crop&q=60" 
             alt="Doctor examining patient" 
@@ -192,40 +192,67 @@ const FeaturedDoctorsSection = () => {
         
         <div className="relative mt-10">
           <div className="overflow-hidden px-4 -mx-4 lg:px-0 lg:mx-0">
-            <AnimatePresence mode="wait">
-              <motion.div 
-                key={currentIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-6"
-              >
-                {doctors.slice(currentIndex, currentIndex + 3).map((doc) => (
-                  <div 
-                    key={doc.id}
-                    className="w-full bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden"
-                  >
-                    <img src={doc.image} alt={doc.name} className="w-full h-[240px] object-cover object-top" />
-                    <div className="p-6 flex flex-col flex-grow">
-                      <Badge className="mb-4 self-start">{doc.speciality}</Badge>
-                      <h3 className="font-['DM_Serif_Display'] text-xl text-novara-text mb-2">{doc.name}</h3>
-                      <div className="mb-6 flex-grow">
-                        <p className="font-['DM_Sans'] text-sm text-novara-muted mt-1">{doc.qualification}</p>
-                        <p className="font-['DM_Sans'] text-sm text-novara-accent font-medium mt-1">{doc.experience} Years Experience</p>
-                      </div>
-                      <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-sm mt-auto">
-                        View Profile
-                      </Button>
-                    </div>
+            <div className="flex md:hidden overflow-x-auto gap-4 pb-4 snap-x snap-mandatory">
+              {doctors.map((doc) => (
+                <div 
+                  key={`mobile-${doc.id}`}
+                  className="min-w-[280px] snap-start flex-shrink-0 bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden"
+                >
+                  <div className="aspect-square overflow-hidden">
+                    <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" />
                   </div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <Badge className="mb-4 self-start">{doc.speciality}</Badge>
+                    <h3 className="font-['DM_Serif_Display'] text-xl text-novara-text mb-2">{doc.name}</h3>
+                    <div className="mb-6 flex-grow">
+                      <p className="font-['DM_Sans'] text-sm text-novara-muted mt-1">{doc.qualification}</p>
+                      <p className="font-['DM_Sans'] text-sm text-novara-accent font-medium mt-1">{doc.experience} Years Experience</p>
+                    </div>
+                    <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-sm mt-auto">
+                      View Profile
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="hidden md:block">
+              <AnimatePresence mode="wait">
+                <motion.div 
+                  key={currentIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                >
+                  {doctors.slice(currentIndex, currentIndex + 3).map((doc) => (
+                    <div 
+                      key={doc.id}
+                      className="w-full bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden"
+                    >
+                      <div className="aspect-square overflow-hidden">
+                        <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" />
+                      </div>
+                      <div className="p-6 flex flex-col flex-grow">
+                        <Badge className="mb-4 self-start">{doc.speciality}</Badge>
+                        <h3 className="font-['DM_Serif_Display'] text-xl text-novara-text mb-2">{doc.name}</h3>
+                        <div className="mb-6 flex-grow">
+                          <p className="font-['DM_Sans'] text-sm text-novara-muted mt-1">{doc.qualification}</p>
+                          <p className="font-['DM_Sans'] text-sm text-novara-accent font-medium mt-1">{doc.experience} Years Experience</p>
+                        </div>
+                        <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-sm mt-auto">
+                          View Profile
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-between mt-8 gap-6">
-            <div className="hidden md:block w-[104px]"></div>
+          <div className="hidden md:flex flex-row items-center justify-between mt-8 gap-6">
+            <div className="w-[104px]"></div>
             
             <div className="flex justify-center gap-2">
               <button 
@@ -300,8 +327,7 @@ const PatientStoriesSection = () => (
 );
 
 const CTABanner = () => (
-  <section className="bg-novara-primary py-20 relative overflow-hidden">
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-novara-accent rounded-full blur-[120px] opacity-10 pointer-events-none"></div>
+  <section className="bg-novara-primary py-20 relative overflow-hidden" style={{ backgroundImage: 'radial-gradient(ellipse at center, rgba(14,138,125,0.08) 0%, transparent 70%)' }}>
     <div className="container mx-auto px-4 md:px-6 relative z-10 text-center max-w-3xl">
       <SectionHeader 
         label="GET IN TOUCH"
@@ -339,7 +365,9 @@ const BlogSection = () => (
           ];
           return (
           <div key={blog.id} className="min-w-[300px] lg:min-w-0 snap-start bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden h-full">
-            <img src={blogImages[index]} alt="Blog feature" className={`h-48 w-full object-cover rounded-t-xl overflow-hidden ${index === 0 ? 'object-top' : ''}`} />
+            <div className="aspect-[16/9] overflow-hidden">
+              <img src={blogImages[index]} alt="Blog feature" className="w-full h-full object-cover object-center rounded-t-xl" />
+            </div>
             <div className="p-6 flex flex-col flex-grow">
               <div className="flex items-center justify-between">
                 <Badge>{blog.category}</Badge>
