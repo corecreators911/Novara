@@ -38,7 +38,7 @@ export function StatCounter({ target, suffix, label, duration = 2 }) {
       <span className="font-['Space_Grotesk'] text-7xl font-bold text-white leading-none tracking-tight">
         <motion.span>{formattedValue}</motion.span>{suffix}
       </span>
-      <span className="font-['DM_Sans'] text-sm text-white/60 tracking-widest uppercase mt-3">
+      <span className="font-DM_Sans text-sm text-white/60 tracking-widest uppercase mt-3">
         {label}
       </span>
     </div>

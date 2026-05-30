@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const Button = ({ variant = 'primary', children, onClick, to, className = '' }) => {
-  const baseClasses = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-['DM_Sans'] font-semibold text-[15px] transition-all duration-200 min-h-[44px]";
+  const baseClasses = "inline-flex items-center justify-center px-6 py-3 rounded-lg font-DM_Sans font-semibold text-[15px] transition-all duration-200 min-h-[44px]";
   
   const variants = {
     primary: "bg-novara-primary text-white hover:bg-novara-accent",

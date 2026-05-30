@@ -16,18 +16,18 @@ const HeroSection = () => (
     <div className="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 items-center z-10 relative m-0 p-0">
       <div className="max-w-2xl text-center lg:text-left relative z-20">
         <Badge className="mb-6 mx-auto lg:mx-0">India's Premier Multispeciality Care</Badge>
-        <h1 className="font-['DM_Serif_Display'] text-novara-text text-4xl md:text-5xl lg:text-7xl leading-[1.08] tracking-tight mb-6 lg:text-white">
+        <h1 className="font-DM_Serif_Display text-novara-text text-4xl md:text-5xl lg:text-7xl leading-[1.08] tracking-tight mb-6 lg:text-white">
           <span className="lg:hidden">Where Expertise Meets Compassion</span>
           <span className="hidden lg:inline text-novara-text">Where Expertise Meets Compassion</span>
         </h1>
-        <p className="font-['DM_Sans'] text-base sm:text-lg text-white/90 lg:text-novara-muted mb-8 leading-relaxed">
+        <p className="font-DM_Sans text-base sm:text-lg text-white/90 lg:text-novara-muted mb-8 leading-relaxed">
           Delivering advanced medical care with a deeply human touch. Because at Novara, we believe your health journey deserves nothing less than excellence.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
           <Button variant="primary" to="/appointments">Book Appointment</Button>
           <Button variant="outline" to="/specialities" className="bg-white/10 lg:bg-transparent border-white text-white hover:bg-white hover:text-novara-primary lg:border-novara-primary lg:text-novara-primary lg:hover:bg-novara-primary lg:hover:text-white">Explore Specialities</Button>
         </div>
-        <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 lg:gap-8 text-white lg:text-novara-text font-['DM_Sans'] text-sm sm:text-base font-medium">
+        <div className="flex flex-wrap justify-center lg:justify-start items-center gap-6 lg:gap-8 text-white lg:text-novara-text font-DM_Sans text-sm sm:text-base font-medium">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-novara-accent" />
             <span>NABH Accredited</span>
@@ -107,11 +107,11 @@ const SpecialitiesSection = () => (
               <div className="w-12 h-12 bg-novara-accent/10 rounded-xl flex items-center justify-center mb-4 shrink-0">
                  <IconComponent className="w-6 h-6 text-novara-accent" />
               </div>
-              <h3 className="font-['DM_Serif_Display'] text-2xl text-novara-text mb-2">{spec.name}</h3>
-            <p className="font-['DM_Sans'] text-sm text-novara-accent font-medium mt-1 mb-4">{spec.tagline}</p>
+              <h3 className="font-DM_Serif_Display text-2xl text-novara-text mb-2">{spec.name}</h3>
+            <p className="font-DM_Sans text-sm text-novara-accent font-medium mt-1 mb-4">{spec.tagline}</p>
             <ul className="space-y-2 mb-8 flex-grow">
               {spec.conditions.slice(0, 3).map((condition, i) => (
-                <li key={i} className="flex items-start gap-2 font-['DM_Sans'] text-sm text-novara-muted">
+                <li key={i} className="flex items-start gap-2 font-DM_Sans text-sm text-novara-muted">
                   <CheckCircle2 className="w-4 h-4 text-novara-primary mt-0.5 shrink-0" />
                   <span>{condition}</span>
                 </li>
@@ -158,8 +158,8 @@ const WhyChooseSection = () => (
                   {feature.icon}
                 </div>
                 <div>
-                  <h4 className="font-['DM_Sans'] text-lg font-semibold text-novara-text">{feature.title}</h4>
-                  <p className="font-['DM_Sans'] text-sm text-novara-muted mt-1 leading-relaxed">{feature.desc}</p>
+                  <h4 className="font-DM_Sans text-lg font-semibold text-novara-text">{feature.title}</h4>
+                  <p className="font-DM_Sans text-sm text-novara-muted mt-1 leading-relaxed">{feature.desc}</p>
                 </div>
               </div>
             ))}
@@ -203,10 +203,10 @@ const FeaturedDoctorsSection = () => {
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
                     <Badge className="mb-4 self-start">{doc.speciality}</Badge>
-                    <h3 className="font-['DM_Serif_Display'] text-xl text-novara-text mb-2">{doc.name}</h3>
+                    <h3 className="font-DM_Serif_Display text-xl text-novara-text mb-2">{doc.name}</h3>
                     <div className="mb-6 flex-grow">
-                      <p className="font-['DM_Sans'] text-sm text-novara-muted mt-1">{doc.qualification}</p>
-                      <p className="font-['DM_Sans'] text-sm text-novara-accent font-medium mt-1">{doc.experience} Years Experience</p>
+                      <p className="font-DM_Sans text-sm text-novara-muted mt-1">{doc.qualification}</p>
+                      <p className="font-DM_Sans text-sm text-novara-accent font-medium mt-1">{doc.experience} Years Experience</p>
                     </div>
                     <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-sm mt-auto">
                       View Profile
@@ -235,10 +235,10 @@ const FeaturedDoctorsSection = () => {
                       </div>
                       <div className="p-6 flex flex-col flex-grow">
                         <Badge className="mb-4 self-start">{doc.speciality}</Badge>
-                        <h3 className="font-['DM_Serif_Display'] text-xl text-novara-text mb-2">{doc.name}</h3>
+                        <h3 className="font-DM_Serif_Display text-xl text-novara-text mb-2">{doc.name}</h3>
                         <div className="mb-6 flex-grow">
-                          <p className="font-['DM_Sans'] text-sm text-novara-muted mt-1">{doc.qualification}</p>
-                          <p className="font-['DM_Sans'] text-sm text-novara-accent font-medium mt-1">{doc.experience} Years Experience</p>
+                          <p className="font-DM_Sans text-sm text-novara-muted mt-1">{doc.qualification}</p>
+                          <p className="font-DM_Sans text-sm text-novara-accent font-medium mt-1">{doc.experience} Years Experience</p>
                         </div>
                         <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-sm mt-auto">
                           View Profile
@@ -286,7 +286,7 @@ const FeaturedDoctorsSection = () => {
         </div>
         
         <div className="text-center mt-12">
-          <Link to="/doctors" className="font-['DM_Sans'] text-novara-accent font-semibold flex items-center justify-center gap-2 hover:opacity-80 transition-opacity">
+          <Link to="/doctors" className="font-DM_Sans text-novara-accent font-semibold flex items-center justify-center gap-2 hover:opacity-80 transition-opacity">
             View All Doctors <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -311,12 +311,12 @@ const PatientStoriesSection = () => (
             <div className="flex items-center gap-1 mb-6">
               {[...Array(5)].map((_, i) => <span key={i} className="text-[#C9A84C]">★</span>)}
             </div>
-            <p className="font-['DM_Sans'] text-base italic text-novara-text leading-relaxed flex-grow mb-8">
+            <p className="font-DM_Sans text-base italic text-novara-text leading-relaxed flex-grow mb-8">
               "{story.story}"
             </p>
             <div>
-              <p className="font-['DM_Sans'] font-semibold text-novara-text">{story.name}</p>
-              <p className="font-['DM_Sans'] text-sm text-novara-muted mb-2">{story.location}</p>
+              <p className="font-DM_Sans font-semibold text-novara-text">{story.name}</p>
+              <p className="font-DM_Sans text-sm text-novara-muted mb-2">{story.location}</p>
               <Badge>{story.speciality}</Badge>
             </div>
           </div>
@@ -337,10 +337,10 @@ const CTABanner = () => (
         light={true}
       />
       <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 -mt-4">
-        <Link to="/appointments" className="bg-white text-novara-primary font-['DM_Sans'] font-semibold px-8 py-3 rounded-lg hover:bg-white/90 transition-colors duration-200 text-center">
+        <Link to="/appointments" className="bg-white text-novara-primary font-DM_Sans font-semibold px-8 py-3 rounded-lg hover:bg-white/90 transition-colors duration-200 text-center">
           Book Appointment
         </Link>
-        <Link to="/contact" className="bg-transparent border-2 border-white text-white font-['DM_Sans'] font-semibold px-8 py-3 rounded-lg hover:bg-white/10 transition-colors duration-200 text-center">
+        <Link to="/contact" className="bg-transparent border-2 border-white text-white font-DM_Sans font-semibold px-8 py-3 rounded-lg hover:bg-white/10 transition-colors duration-200 text-center">
           Contact Us
         </Link>
       </div>
@@ -371,18 +371,18 @@ const BlogSection = () => (
             <div className="p-6 flex flex-col flex-grow">
               <div className="flex items-center justify-between">
                 <Badge>{blog.category}</Badge>
-                <span className="font-['DM_Sans'] text-xs text-novara-muted">{blog.readTime}</span>
+                <span className="font-DM_Sans text-xs text-novara-muted">{blog.readTime}</span>
               </div>
-              <h3 className="font-['DM_Serif_Display'] text-xl text-novara-text mt-3 leading-snug">
+              <h3 className="font-DM_Serif_Display text-xl text-novara-text mt-3 leading-snug">
                 <Link to={`/blog/${blog.slug}`} className="hover:text-novara-accent transition-colors">{blog.title}</Link>
               </h3>
-              <p className="font-['DM_Sans'] text-sm text-novara-muted mt-2 line-clamp-2 leading-relaxed flex-grow">
+              <p className="font-DM_Sans text-sm text-novara-muted mt-2 line-clamp-2 leading-relaxed flex-grow">
                 {blog.excerpt}
               </p>
-              <span className="font-['DM_Sans'] text-xs text-novara-muted mt-3">{blog.author || 'Dr. Sarah Wilson'}</span>
+              <span className="font-DM_Sans text-xs text-novara-muted mt-3">{blog.author || 'Dr. Sarah Wilson'}</span>
               <div className="flex items-center justify-between mt-1">
-                <span className="font-['DM_Sans'] text-xs text-novara-muted">{blog.date}</span>
-                <Link to={`/blog/${blog.slug}`} className="font-['DM_Sans'] text-sm font-semibold text-novara-accent hover:opacity-80 mt-auto">
+                <span className="font-DM_Sans text-xs text-novara-muted">{blog.date}</span>
+                <Link to={`/blog/${blog.slug}`} className="font-DM_Sans text-sm font-semibold text-novara-accent hover:opacity-80 mt-auto">
                   Read More →
                 </Link>
               </div>
@@ -392,7 +392,7 @@ const BlogSection = () => (
       </div>
       
       <div className="text-center mt-8">
-        <Link to="/blog" className="font-['DM_Sans'] text-novara-accent font-semibold flex items-center justify-center gap-2 hover:opacity-80 transition-opacity">
+        <Link to="/blog" className="font-DM_Sans text-novara-accent font-semibold flex items-center justify-center gap-2 hover:opacity-80 transition-opacity">
           View All Articles <ArrowRight className="w-4 h-4" />
         </Link>
       </div>

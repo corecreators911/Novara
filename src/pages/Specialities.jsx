@@ -30,13 +30,13 @@ function SpecialityRow({ speciality, isLast }) {
       {/* Text Column */}
       <div className="w-full md:w-[55%] order-2 md:order-1">
         <IconComponent size={28} className="text-novara-accent mb-4" />
-        <h3 className="font-['DM_Serif_Display'] text-3xl md:text-4xl text-novara-text mb-2">
+        <h3 className="font-DM_Serif_Display text-3xl md:text-4xl text-novara-text mb-2">
           {speciality.name}
         </h3>
-        <div className="font-['DM_Sans'] text-sm uppercase tracking-widest text-novara-accent mb-4">
+        <div className="font-DM_Sans text-sm uppercase tracking-widest text-novara-accent mb-4">
           {speciality.tagline}
         </div>
-        <p className="font-['DM_Sans'] text-base text-novara-muted leading-relaxed mb-6 max-w-prose">
+        <p className="font-DM_Sans text-base text-novara-muted leading-relaxed mb-6 max-w-prose">
           {speciality.description}
         </p>
         <div className="flex flex-wrap gap-2">
@@ -51,7 +51,7 @@ function SpecialityRow({ speciality, isLast }) {
         </div>
         <Link
           to={`/specialities/${speciality.slug}`}
-          className="mt-8 inline-flex items-center gap-2 font-['DM_Sans'] text-sm font-semibold text-novara-primary hover:text-novara-accent group transition-colors duration-300"
+          className="mt-8 inline-flex items-center gap-2 font-DM_Sans text-sm font-semibold text-novara-primary hover:text-novara-accent group transition-colors duration-300"
         >
           Learn More
           <ArrowRight

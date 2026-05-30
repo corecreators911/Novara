@@ -54,8 +54,8 @@ const Navbar = () => {
           
           {/* Logo */}
           <Link to="/" className="flex items-baseline gap-2 z-50">
-            <span className="font-['DM_Serif_Display'] text-white text-2xl tracking-tight">Novara</span>
-            <span className="font-['DM_Sans'] text-white text-[13px] font-medium tracking-wide uppercase">Hospital</span>
+            <span className="font-DM_Serif_Display text-white text-2xl tracking-tight">Novara</span>
+            <span className="font-DM_Sans text-white text-[13px] font-medium tracking-wide uppercase">Hospital</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -67,7 +67,7 @@ const Navbar = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`font-['DM_Sans'] text-[15px] font-medium text-white transition-colors hover:text-novara-accent relative py-1`}
+                    className={`font-DM_Sans text-[15px] font-medium text-white transition-colors hover:text-novara-accent relative py-1`}
                   >
                     {link.name}
                     {isActive && (
@@ -79,7 +79,7 @@ const Navbar = () => {
             </div>
             <Link 
               to="/appointments"
-              className="border border-white text-white px-5 py-2.5 rounded-lg font-['DM_Sans'] font-semibold text-[14px] hover:bg-white hover:text-novara-primary transition-colors duration-200"
+              className="border border-white text-white px-5 py-2.5 rounded-lg font-DM_Sans font-semibold text-[14px] hover:bg-white hover:text-novara-primary transition-colors duration-200"
             >
               Book Appointment
             </Link>
@@ -132,7 +132,7 @@ const Navbar = () => {
                     <Link
                       key={link.path}
                       to={link.path}
-                      className={`font-['DM_Sans'] text-white text-lg py-4 border-b border-white/10 ${
+                      className={`font-DM_Sans text-white text-lg py-4 border-b border-white/10 ${
                         isActive ? 'text-novara-accent' : ''
                       }`}
                     >

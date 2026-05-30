@@ -15,14 +15,14 @@ export function SectionHeader({ label, heading, subtext, align = 'left', light =
 
   return (
     <div ref={ref} className={`mb-12 ${alignClass}`}>
-      <span className="text-xs font-['DM_Sans'] font-semibold tracking-[0.2em] uppercase text-novara-accent">
+      <span className="text-xs font-DM_Sans font-semibold tracking-[0.2em] uppercase text-novara-accent">
         {scrambledLabel}
       </span>
-      <h2 className={`font-['DM_Serif_Display'] text-4xl md:text-5xl tracking-tight leading-tight mt-3 ${headingColor}`}>
+      <h2 className={`font-DM_Serif_Display text-4xl md:text-5xl tracking-tight leading-tight mt-3 ${headingColor}`}>
         {heading}
       </h2>
       {subtext && (
-        <p className={`text-base font-['DM_Sans'] mt-4 max-w-2xl leading-relaxed ${subtextAlign} ${subtextColor}`}>
+        <p className={`text-base font-DM_Sans mt-4 max-w-2xl leading-relaxed ${subtextAlign} ${subtextColor}`}>
           {subtext}
         </p>
       )}

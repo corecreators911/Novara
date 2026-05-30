@@ -51,9 +51,9 @@ colors: {
 ```
 
 ### Typography Rules
-- `font-['DM_Serif_Display']` — all H1, H2, H3 headings
-- `font-['DM_Sans']` — all body text, nav, buttons, labels, forms
-- `font-['Syne']` — ONLY for large stat numbers (e.g. "500+")
+- `font-DM_Serif_Display` — all H1, H2, H3 headings
+- `font-DM_Sans` — all body text, nav, buttons, labels, forms
+- `font-Syne` — ONLY for large stat numbers (e.g. "500+")
 - Never mix heading font into body copy or UI elements
 - Never use Inter, Roboto, or system fonts anywhere
 

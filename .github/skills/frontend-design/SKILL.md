@@ -131,19 +131,19 @@ Three variants only:
 
 **Primary** — solid Primary background, white text
 ```
-bg-[#1E3A5F] text-white px-6 py-3 rounded-lg font-['DM_Sans'] font-semibold text-[15px]
+bg-[#1E3A5F] text-white px-6 py-3 rounded-lg font-DM_Sans font-semibold text-[15px]
 hover: bg-[#0E8A7D] transition-colors duration-200
 ```
 
 **Secondary** — solid Accent background, white text (for less prominent but still action-forward CTAs)
 ```
-bg-[#0E8A7D] text-white px-6 py-3 rounded-lg font-['DM_Sans'] font-semibold text-[15px]
+bg-[#0E8A7D] text-white px-6 py-3 rounded-lg font-DM_Sans font-semibold text-[15px]
 hover: opacity-90 transition-opacity duration-200
 ```
 
 **Outline** — transparent, Primary border and text (for secondary actions like "Learn More")
 ```
-border border-[#1E3A5F] text-[#1E3A5F] px-6 py-3 rounded-lg font-['DM_Sans'] font-semibold text-[15px]
+border border-[#1E3A5F] text-[#1E3A5F] px-6 py-3 rounded-lg font-DM_Sans font-semibold text-[15px]
 hover: bg-[#1E3A5F] text-white transition-all duration-200
 ```
 
@@ -172,13 +172,13 @@ Every major section uses this pattern:
 
 ```jsx
 <div className="mb-12">
-  <span className="text-[#0E8A7D] font-['DM_Sans'] text-xs font-medium tracking-widest uppercase">
+  <span className="text-[#0E8A7D] font-DM_Sans text-xs font-medium tracking-widest uppercase">
     Our Specialities
   </span>
-  <h2 className="font-['DM_Serif_Display'] text-[#1C1C2E] text-4xl mt-2 leading-tight tracking-tight">
+  <h2 className="font-DM_Serif_Display text-[#1C1C2E] text-4xl mt-2 leading-tight tracking-tight">
     World-Class Care Across Every Discipline
   </h2>
-  <p className="text-[#5A6478] font-['DM_Sans'] text-base mt-4 max-w-2xl leading-relaxed">
+  <p className="text-[#5A6478] font-DM_Sans text-base mt-4 max-w-2xl leading-relaxed">
     Supporting description here.
   </p>
 </div>
@@ -188,7 +188,7 @@ Every major section uses this pattern:
 
 ```
 bg-[#0E8A7D]/10 text-[#0E8A7D] px-3 py-1 rounded-full
-font-['DM_Sans'] text-xs font-medium tracking-wide
+font-DM_Sans text-xs font-medium tracking-wide
 ```
 
 Use for: speciality labels on doctor cards, blog categories, availability status.

@@ -9,21 +9,21 @@ const Footer = () => {
           {/* Col 1 */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <Link to="/" className="flex items-baseline gap-2 mb-4">
-              <span className="font-['DM_Serif_Display'] text-white text-2xl tracking-tight">Novara</span>
-              <span className="font-['DM_Sans'] text-white text-[13px] font-medium tracking-wide uppercase">Hospital</span>
+              <span className="font-DM_Serif_Display text-white text-2xl tracking-tight">Novara</span>
+              <span className="font-DM_Sans text-white text-[13px] font-medium tracking-wide uppercase">Hospital</span>
             </Link>
-            <p className="font-['DM_Sans'] text-novara-accent text-sm font-medium tracking-widest uppercase mb-4">
+            <p className="font-DM_Sans text-novara-accent text-sm font-medium tracking-widest uppercase mb-4">
               Where Expertise Meets Compassion
             </p>
-            <p className="font-['DM_Sans'] text-white/70 text-sm leading-relaxed max-w-xs">
+            <p className="font-DM_Sans text-white/70 text-sm leading-relaxed max-w-xs">
               Providing world-class healthcare with a human touch since 2004. Your health is our greatest priority.
             </p>
           </div>
 
           {/* Col 2 */}
           <div className="flex flex-col items-center md:items-start">
-            <h4 className="font-['DM_Serif_Display'] text-xl mb-6">Quick Links</h4>
-            <ul className="flex flex-col gap-3 text-center md:text-left font-['DM_Sans'] text-sm text-white/80">
+            <h4 className="font-DM_Serif_Display text-xl mb-6">Quick Links</h4>
+            <ul className="flex flex-col gap-3 text-center md:text-left font-DM_Sans text-sm text-white/80">
               <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><Link to="/specialities" className="hover:text-white transition-colors">Specialities</Link></li>
@@ -35,8 +35,8 @@ const Footer = () => {
 
           {/* Col 3 */}
           <div className="flex flex-col items-center md:items-start">
-            <h4 className="font-['DM_Serif_Display'] text-xl mb-6">Our Specialities</h4>
-            <ul className="flex flex-col gap-3 text-center md:text-left font-['DM_Sans'] text-sm text-white/80">
+            <h4 className="font-DM_Serif_Display text-xl mb-6">Our Specialities</h4>
+            <ul className="flex flex-col gap-3 text-center md:text-left font-DM_Sans text-sm text-white/80">
               <li><Link to="/specialities/cardiology" className="hover:text-white transition-colors">Cardiology</Link></li>
               <li><Link to="/specialities/neurology" className="hover:text-white transition-colors">Neurology</Link></li>
               <li><Link to="/specialities/orthopaedics" className="hover:text-white transition-colors">Orthopaedics</Link></li>
@@ -47,8 +47,8 @@ const Footer = () => {
 
           {/* Col 4 */}
           <div className="flex flex-col items-center md:items-start">
-            <h4 className="font-['DM_Serif_Display'] text-xl mb-6">Contact Info</h4>
-            <ul className="flex flex-col gap-4 text-center md:text-left font-['DM_Sans'] text-sm text-white/80">
+            <h4 className="font-DM_Serif_Display text-xl mb-6">Contact Info</h4>
+            <ul className="flex flex-col gap-4 text-center md:text-left font-DM_Sans text-sm text-white/80">
               <li>
                 <strong>Address:</strong><br />
                 Novara Health City, Linking Road,<br />
@@ -72,10 +72,10 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
-          <p className="font-['DM_Sans'] text-xs text-white/60">
+          <p className="font-DM_Sans text-xs text-white/60">
             © 2026 Novara Hospital. All rights reserved.
           </p>
-          <p className="font-['DM_Sans'] text-xs text-white/40">
+          <p className="font-DM_Sans text-xs text-white/40">
             Designed for excellence in healthcare.
           </p>
         </div>
