@@ -18,6 +18,90 @@ const TIME_SLOTS = [
   '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM', '05:00 PM'
 ];
 
+const CalendarPicker = ({ selectedDate, onChange, maxMonths = 2 }) => {
+  const [currentMonth, setCurrentMonth] = useState(() => {
+    return selectedDate ? new Date(`${selectedDate}T00:00:00`) : new Date();
+  });
+  
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  
+  const maxDate = new Date();
+  maxDate.setHours(0,0,0,0);
+  maxDate.setMonth(maxDate.getMonth() + maxMonths);
+  
+  const nextMonth = () => {
+    const next = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+    const maxMonthCheck = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
+    if (next <= maxMonthCheck) setCurrentMonth(next);
+  };
+  
+  const prevMonth = () => {
+    const prev = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
+    const todayMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    if (prev >= todayMonth) setCurrentMonth(prev);
+  };
+
+  const daysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
+  const firstDayOfMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay();
+  
+  const days = [];
+  for (let i = 0; i < firstDayOfMonth; i++) {
+    days.push(null);
+  }
+  for (let i = 1; i <= daysInMonth; i++) {
+    days.push(new Date(currentMonth.getFullYear(), currentMonth.getMonth(), i));
+  }
+
+  const isSameDay = (d1, d2) => d1 && d2 && d1.getDate() === d2.getDate() && d1.getMonth() === d2.getMonth() && d1.getFullYear() === d2.getFullYear();
+
+  return (
+    <div className="bg-white border border-novara-border rounded-xl p-4 font-DM_Sans shadow-sm">
+      <div className="flex justify-between items-center mb-4">
+        <button type="button" onClick={prevMonth} className="p-1.5 hover:bg-novara-bg rounded-md text-novara-primary transition-colors"><ChevronLeft size={18}/></button>
+        <div className="font-semibold text-novara-primary">
+          {currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}
+        </div>
+        <button type="button" onClick={nextMonth} className="p-1.5 hover:bg-novara-bg rounded-md text-novara-primary transition-colors"><ChevronRight size={18}/></button>
+      </div>
+      <div className="grid grid-cols-7 gap-1 text-center mb-2">
+        {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(d => <div key={d} className="text-xs text-novara-muted font-medium">{d}</div>)}
+      </div>
+      <div className="grid grid-cols-7 gap-1 text-center">
+        {days.map((date, i) => {
+          if (!date) return <div key={`empty-${i}`} className="p-2"></div>;
+          
+          const isPast = date < today;
+          const isAfterMax = date > maxDate;
+          const disabled = isPast || isAfterMax;
+          const selected = selectedDate && isSameDay(date, new Date(`${selectedDate}T00:00:00`)); 
+          
+          return (
+            <button
+              key={date.toISOString()}
+              type="button"
+              disabled={disabled}
+              onClick={() => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                onChange(`${year}-${month}-${day}`);
+              }}
+              className={`py-2 w-full rounded-lg flex items-center justify-center text-sm transition-all duration-200 ${
+                disabled ? 'text-gray-300 cursor-not-allowed opacity-50' 
+                : selected ? 'bg-novara-accent text-white font-semibold shadow-md' 
+                : 'hover:bg-novara-accent/10 text-novara-text cursor-pointer hover:font-medium'
+              }`}
+            >
+              {date.getDate()}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 const Appointments = () => {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,6 +110,7 @@ const Appointments = () => {
     firstName: '',
     lastName: '',
     email: '',
+    countryCode: '+1',
     phone: '',
     dob: '',
     speciality: '',
@@ -43,13 +128,35 @@ const Appointments = () => {
     if (step === 1) {
       if (!formData.firstName) newErrors.firstName = 'First name is required';
       if (!formData.lastName) newErrors.lastName = 'Last name is required';
-      if (!formData.phone) newErrors.phone = 'Phone number is required';
-      if (!formData.dob) newErrors.dob = 'Date of birth is required';
+      if (!formData.phone || formData.phone.length < 10) newErrors.phone = 'Valid 10-digit phone number is required';
+      if (!formData.dob) {
+        newErrors.dob = 'Date of birth is required';
+      } else {
+        const dobDate = new Date(formData.dob);
+        const today = new Date();
+        const minDate = new Date();
+        minDate.setFullYear(today.getFullYear() - 120); // max 120 years old
+        if (dobDate > today) newErrors.dob = 'Date of birth cannot be in the future';
+        else if (dobDate < minDate) newErrors.dob = 'Please enter a valid date of birth';
+      }
     } else if (step === 2) {
       if (!formData.speciality) newErrors.speciality = 'Please select a department';
       if (!formData.doctorId) newErrors.doctorId = 'Please select a doctor';
     } else if (step === 3) {
-      if (!formData.date) newErrors.date = 'Please select a date';
+      if (!formData.date) {
+        newErrors.date = 'Please select a date';
+      } else {
+        const selectedDate = new Date(`${formData.date}T00:00:00`);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const maxDate = new Date();
+        maxDate.setHours(0,0,0,0);
+        maxDate.setMonth(maxDate.getMonth() + 2);
+        
+        if (selectedDate < today || selectedDate > maxDate) {
+          newErrors.date = 'Please select a valid date within the next 2 months';
+        }
+      }
       if (!formData.timeSlot) newErrors.timeSlot = 'Please select a time slot';
     }
 
@@ -191,12 +298,23 @@ const Appointments = () => {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-novara-text">Phone Number *</label>
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.phone ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} placeholder="+1 (555) 000-0000" />
+                    <div className="flex gap-2">
+                      <select name="countryCode" value={formData.countryCode} onChange={handleChange} className="p-3 bg-white rounded-lg border border-novara-border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 focus:border-novara-accent transition-colors w-24">
+                        <option value="+1">+1</option>
+                        <option value="+44">+44</option>
+                        <option value="+91">+91</option>
+                        <option value="+61">+61</option>
+                      </select>
+                      <input type="tel" name="phone" maxLength="10" value={formData.phone} onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, '');
+                        if (val.length <= 10) handleChange({ target: { name: 'phone', value: val } });
+                      }} className={`flex-1 p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.phone ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} placeholder="5550000000" />
+                    </div>
                     {errors.phone && <span className="text-red-500 text-xs">{errors.phone}</span>}
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-novara-text">Date of Birth *</label>
-                    <input type="date" name="dob" value={formData.dob} onChange={handleChange} className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.dob ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} />
+                    <input type="date" name="dob" max={new Date().toISOString().split('T')[0]} value={formData.dob} onChange={handleChange} className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.dob ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} />
                     {errors.dob && <span className="text-red-500 text-xs">{errors.dob}</span>}
                   </div>
                 </div>
@@ -268,7 +386,12 @@ const Appointments = () => {
                      <label className="text-sm font-medium text-novara-text flex items-center gap-2">
                        <Calendar size={18} className="text-novara-accent" /> Preferred Date *
                      </label>
-                     <input type="date" name="date" min={new Date().toISOString().split('T')[0]} value={formData.date} onChange={handleChange} className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.date ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} />
+                     <CalendarPicker 
+                       selectedDate={formData.date}
+                       onChange={(dateStr) => {
+                         handleChange({ target: { name: 'date', value: dateStr } });
+                       }} 
+                     />
                      {errors.date && <span className="text-red-500 text-xs">{errors.date}</span>}
                    </div>
 
@@ -314,7 +437,7 @@ const Appointments = () => {
                       <div>
                         <p className="text-sm text-novara-muted mb-1">Patient Info</p>
                         <p className="font-semibold text-novara-primary text-lg">{formData.firstName} {formData.lastName}</p>
-                        <p className="text-sm text-novara-text mt-1">{formData.phone} • {formData.email || 'No email provided'}</p>
+                        <p className="text-sm text-novara-text mt-1">{formData.countryCode} {formData.phone} • {formData.email || 'No email provided'}</p>
                         <p className="text-sm text-novara-muted mt-1">DOB: {formData.dob}</p>
                       </div>
                       <button onClick={() => setStep(1)} className="text-sm text-novara-accent font-medium hover:underline p-1">Edit</button>
