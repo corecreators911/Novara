@@ -1,11 +1,24 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 
 const Contact = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      if (e.target && typeof e.target.reset === 'function') {
+        e.target.reset();
+      }
+    }, 4000);
+  };
 
   const contactDetails = [
     {
@@ -106,7 +119,24 @@ const Contact = () => {
               <h3 className="font-DM_Serif_Display text-2xl text-novara-text mb-6">
                 Send us a message
               </h3>
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <AnimatePresence>
+                {isSubmitted && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="mb-6 p-4 bg-green-100 border border-green-300 text-green-700 rounded-lg"
+                  >
+                    <div className="flex items-center">
+                      <CheckCircle className="w-5 h-5 mr-2" />
+                      <p className="font-DM_Sans text-sm">
+                        Your message has been sent successfully!
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="font-DM_Sans text-sm font-semibold text-novara-text">First Name</label>
