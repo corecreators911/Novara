@@ -13,6 +13,7 @@ import PatientStories from './pages/PatientStories'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import Contact from './pages/Contact'
+import NotFound from './pages/NotFound'
 
 function App() {
   const location = useLocation();
@@ -33,7 +34,7 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </PageWrapper>
   )

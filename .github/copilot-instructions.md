@@ -19,13 +19,13 @@ No shortcuts. No placeholder logic. No generic patterns.
 
 ## Tech Stack
 
-- **Framework:** React 18 with Vite
+- **Framework:** React 19 with Vite 8
 - **Language:** JavaScript (no TypeScript for this project)
 - **Styling:** Tailwind CSS v3 — utility-first, no custom CSS files unless absolutely unavoidable
-- **Routing:** React Router v6 — all pages are separate routes
+- **Routing:** React Router v7 — all pages are separate routes
 - **Animations:** Framer Motion — use sparingly, only for meaningful transitions (page enters, card reveals, counter animations). No scroll-hijacking, no heavy sequences.
 - **Icons:** Lucide React
-- **Fonts:** Loaded via Google Fonts in index.html — DM Serif Display (headings), DM Sans (body/UI), Syne (stat numbers only)
+- **Fonts:** Loaded via Google Fonts in index.html — DM Serif Display (headings), DM Sans (body/UI), Space Grotesk (stat numbers only), Syne (in config but unused — do not add new uses)
 - **Package manager:** npm
 - **Deployment:** Vercel
 
@@ -53,7 +53,7 @@ colors: {
 ### Typography Rules
 - `font-DM_Serif_Display` — all H1, H2, H3 headings
 - `font-DM_Sans` — all body text, nav, buttons, labels, forms
-- `font-Syne` — ONLY for large stat numbers (e.g. "500+")
+- `font-['Space_Grotesk']` — ONLY for large stat numbers (e.g. "500+"), referenced as `font-['Space_Grotesk']` in Tailwind classes
 - Never mix heading font into body copy or UI elements
 - Never use Inter, Roboto, or system fonts anywhere
 
@@ -66,9 +66,12 @@ src/
 ├── assets/          # images, SVGs, logo placeholder
 ├── components/
 │   ├── layout/      # Navbar, Footer, PageWrapper
-│   ├── ui/          # reusable: Button, Card, Badge, SectionHeader, StatCounter
-│   └── sections/    # page-specific sections: HeroSection, DoctorsGrid, etc.
-├── data/            # all dummy data as JS files: doctors.js, specialities.js, blogs.js
+│   ├── ui/          # reusable: Button, Badge, SectionHeader, StatCounter
+│   └── sections/    # intended for page-specific sections (currently empty — section
+│                    # components are defined as functions inside each page file)
+├── data/            # all dummy data as JS files: doctors.js, specialities.js,
+│                    # blogs.js, patientInfo.js, patientStories.js
+├── hooks/           # custom hooks: useTextScramble.js
 ├── pages/           # one file per route
 └── main.jsx
 ```
@@ -77,21 +80,22 @@ src/
 
 ## Pages & Routes
 
-| Page | Route |
-|---|---|
-| Home | `/` |
-| About | `/about` |
-| Specialities Overview | `/specialities` |
-| Speciality Detail | `/specialities/:slug` |
-| Doctors Directory | `/doctors` |
-| Doctor Profile | `/doctors/:slug` |
-| Appointments | `/appointments` |
-| Patient Information | `/patient-information` |
-| Facilities | `/facilities` |
-| Patient Stories | `/patient-stories` |
-| Health Blog | `/blog` |
-| Blog Post | `/blog/:slug` |
-| Contact | `/contact` |
+| Page | Route | Status |
+|---|---|---|
+| Home | `/` | ✅ Built |
+| About | `/about` | ⚠️ Stub — needs content |
+| Specialities Overview | `/specialities` | ✅ Built |
+| Speciality Detail | `/specialities/:slug` | ✅ Built |
+| Doctors Directory | `/doctors` | ✅ Built |
+| Doctor Profile | `/doctors/:slug` | ✅ Built |
+| Appointments | `/appointments` | ✅ Built |
+| Patient Information | `/patient-information` | ✅ Built |
+| Facilities | `/facilities` | ✅ Built |
+| Patient Stories | `/patient-stories` | ⚠️ Stub — needs content |
+| Health Blog | `/blog` | ✅ Built |
+| Blog Post | `/blog/:slug` | ✅ Built (Lorem Ipsum body — demo only) |
+| Contact | `/contact` | ✅ Built |
+| 404 | `*` | ⚠️ Unstyled — needs proper component |
 
 ---
 
@@ -113,18 +117,70 @@ Every component must be designed for three breakpoints:
 
 ---
 
+## Custom Hooks
+
+### `useTextScramble(text, trigger)` — `src/hooks/useTextScramble.js`
+A text scramble animation hook. Accepts a text string and a boolean trigger. When trigger becomes true, animates the text by cycling through random characters before resolving to the real text. Used inside `SectionHeader` to animate the small label text when it scrolls into view. Respects `prefers-reduced-motion`.
+
+---
+
 ## Code Conventions
 
 - Functional components only — no class components
 - One component per file
 - Props always destructured in function signature
 - Dummy data always imported from `src/data/` — never hardcoded inside components
+  - **Known violations:** `Facilities.jsx` (facilitiesData hardcoded), `Contact.jsx` (contactDetails hardcoded) — fix when refactoring
 - All images use descriptive `alt` text
-- No inline styles — Tailwind classes only
+- All `<img>` tags outside hero sections should use `loading="lazy"`
+- No inline styles — Tailwind classes only (minor exception: custom `select` dropdown arrow in `Doctors.jsx`)
 - No `console.log` left in final code
 - Framer Motion imports only from `framer-motion` — never animate with raw CSS keyframes for JS-driven motion
 - Button component accepts `variant` prop: `primary`, `secondary`, `outline`
-- All form inputs have associated `<label>` elements
+- All form inputs must have associated `<label>` elements with matching `htmlFor` and `id` attributes
+- `SectionHeader` is exported both as named and default export — prefer named import `{ SectionHeader }`
+
+---
+
+## Data Files (src/data/)
+
+| File | Exports | Used in |
+|---|---|---|
+| `doctors.js` | `doctors` array | `Home`, `Doctors`, `DoctorProfile`, `SpecialityDetail`, `Appointments` |
+| `specialities.js` | `specialities` array | `Home`, `Specialities`, `SpecialityDetail`, `Appointments` |
+| `blogs.js` | `blogs` array | `Home`, `Blog`, `BlogPost` |
+| `patientStories.js` | `patientStories` array | `Home` (PatientStories page is a stub) |
+| `patientInfo.js` | `visitingHours`, `admissionProcess`, `amenities`, `insuranceProviders`, `faqs` | `PatientInformation` |
+
+### Known data gaps:
+- `blogs.js` entries have no `image` field — blog listing page has no card images
+- `blogs.js` entries have no `content` field — blog post body is Lorem Ipsum
+- `doctors.js` includes Dr. Maya Iyer (Pediatrics) but `specialities.js` has no Pediatrics entry — she is an orphaned doctor
+
+---
+
+## Known Issues (Pending Fixes)
+
+### Critical
+- `About.jsx` — empty stub, only renders `<h1>About</h1>`
+- `PatientStories.jsx` — empty stub, renders `<h1>Patient Stories</h1>`, ignores `patientStories.js`
+- `App.jsx` 404 route — renders raw unstyled `<h1>404 - Page Not Found</h1>`
+- `Facilities.jsx` L121 — CSS typo: `md:w-2/3text-center` (missing space) → should be `md:w-2/3 text-center`
+- `Appointments.jsx` — default country code is `+1` (should be `+91` for an Indian hospital)
+- Pediatrics speciality missing from `specialities.js` — Dr. Maya Iyer's route `/specialities/pediatrics` 404s
+
+### Non-Critical (Polish)
+- `facilitiesData` in `Facilities.jsx` should move to `src/data/facilities.js`
+- `contactDetails` in `Contact.jsx` should move to `src/data/contactInfo.js`
+- Blog images in `Home.jsx` are hardcoded inline — should be in `blogs.js`
+- `iconMap` object is duplicated in `Home.jsx`, `Specialities.jsx`, `SpecialityDetail.jsx` — extract to `src/utils/iconMap.js`
+- Doctor card JSX is duplicated (mobile + desktop) in `Home.jsx` FeaturedDoctorsSection — extract `DoctorCard` component
+- Identical page hero markup in `Facilities.jsx`, `Blog.jsx`, `Contact.jsx` — extract `PageHero` component
+- All `<img>` tags missing `loading="lazy"`
+- `window.matchMedia` in `StatCounter.jsx` called at render scope — move to `useMemo`
+- Missing `htmlFor` on labels in `Contact.jsx`, `Blog.jsx` newsletter, `Appointments.jsx`
+- FAQ button in `PatientInformation.jsx` missing `aria-expanded` attribute
+- "Request a Callback" button in `Doctors.jsx` is a dead `onClick={() => {}}` — link to `/contact`
 
 ---
 

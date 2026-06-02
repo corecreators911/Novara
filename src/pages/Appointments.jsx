@@ -110,7 +110,7 @@ const Appointments = () => {
     firstName: '',
     lastName: '',
     email: '',
-    countryCode: '+1',
+    countryCode: '+91',
     phone: '',
     dob: '',
     speciality: '',

@@ -58,10 +58,10 @@ export const doctors = [
     id: 6,
     name: 'Dr. Maya Iyer',
     slug: 'dr-maya-iyer',
-    speciality: 'Pediatrics',
-    qualification: 'MD Pediatrics',
+    speciality: 'Oncology',
+    qualification: 'MD, DNB Medical Oncology',
     experience: 16,
-    bio: 'Dr. Iyer is dedicated to providing comprehensive pediatric care from newborn to adolescence, with a special interest in pediatric intensive care.',
+    bio: 'Dr. Iyer specializes in gynaecological and breast oncology, offering personalized cancer care plans rooted in the latest clinical evidence. She is known for her empathetic patient communication during complex cancer journeys.',
     available: true,
     image: 'https://images.unsplash.com/photo-1706565029539-d09af5896340?q=80&w=687&auto=format&fit=crop',
   }

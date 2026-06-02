@@ -118,7 +118,7 @@ export default function Facilities() {
       {/* Trust & CTA Section */}
       <section className="px-4 md:px-6">
         <div className="container mx-auto max-w-6xl bg-white border border-novara-border rounded-3xl p-8 md:p-12 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="md:w-2/3text-center md:text-left">
+          <div className="md:w-2/3 text-center md:text-left">
             <h2 className="font-DM_Serif_Display text-3xl md:text-4xl text-novara-text mb-4">
               Experience Healthcare Without Compromise
             </h2>

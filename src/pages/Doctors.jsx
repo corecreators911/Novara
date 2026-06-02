@@ -213,7 +213,7 @@ const Doctors = () => {
               Our patient care team can help match you with the right specialist based on your symptoms and medical history. Call us or request a callback.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button variant="primary" onClick={() => {}}>
+              <Button variant="primary" to="/contact">
                 Request a Callback
               </Button>
               <a href="tel:+1234567890" className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-DM_Sans font-semibold text-[15px] border border-novara-primary text-novara-primary hover:bg-novara-primary hover:text-white transition-all duration-200">
