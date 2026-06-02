@@ -143,9 +143,12 @@ const Navbar = () => {
               </div>
 
               <div className="mt-8">
-                <Button variant="primary" to="/appointments" className="w-full bg-white text-novara-primary hover:bg-gray-100">
+                <Link
+                  to="/appointments"
+                  className="block w-full text-center bg-white text-novara-primary font-DM_Sans font-semibold text-[15px] px-6 py-3 rounded-lg hover:bg-white/90 transition-colors duration-200"
+                >
                   Book Appointment
-                </Button>
+                </Link>
               </div>
             </motion.div>
           </>

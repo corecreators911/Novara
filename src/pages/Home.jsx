@@ -92,7 +92,8 @@ const SpecialitiesSection = () => (
         subtext="From complex cardiac interventions to comprehensive cancer care, our specialized departments are equipped with state-of-the-art technology and led by globally recognized experts."
       />
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Mobile: horizontal scroll row; sm: 2-col grid; xl: all 5 side-by-side */}
+      <div className="hidden sm:grid sm:grid-cols-2 xl:grid-cols-5 gap-6">
         {specialities.map((spec, index) => {
           const IconComponent = iconMap[spec.icon] || HeartHandshake;
           return (
@@ -108,21 +109,59 @@ const SpecialitiesSection = () => (
                  <IconComponent className="w-6 h-6 text-novara-accent" />
               </div>
               <h3 className="font-DM_Serif_Display text-2xl text-novara-text mb-2">{spec.name}</h3>
-            <p className="font-DM_Sans text-sm text-novara-accent font-medium mt-1 mb-4">{spec.tagline}</p>
-            <ul className="space-y-2 mb-8 flex-grow">
-              {spec.conditions.slice(0, 3).map((condition, i) => (
-                <li key={i} className="flex items-start gap-2 font-DM_Sans text-sm text-novara-muted">
-                  <CheckCircle2 className="w-4 h-4 text-novara-primary mt-0.5 shrink-0" />
-                  <span>{condition}</span>
-                </li>
-              ))}
-            </ul>
-            <Button variant="outline" to={`/specialities/${spec.slug}`} className="w-full text-sm mt-auto border-novara-primary text-novara-primary hover:bg-novara-primary hover:text-white">
-              Learn More
-            </Button>
-          </motion.div>
+              <p className="font-DM_Sans text-sm text-novara-accent font-medium mt-1 mb-4">{spec.tagline}</p>
+              <ul className="space-y-2 mb-8 flex-grow">
+                {spec.conditions.slice(0, 3).map((condition, i) => (
+                  <li key={i} className="flex items-start gap-2 font-DM_Sans text-sm text-novara-muted">
+                    <CheckCircle2 className="w-4 h-4 text-novara-primary mt-0.5 shrink-0" />
+                    <span>{condition}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button variant="outline" to={`/specialities/${spec.slug}`} className="w-full text-sm mt-auto border-novara-primary text-novara-primary hover:bg-novara-primary hover:text-white">
+                Learn More
+              </Button>
+            </motion.div>
           );
         })}
+      </div>
+
+      {/* Mobile-only: horizontal scroll */}
+      <div className="sm:hidden relative">
+        <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory -mx-4 px-4">
+          {specialities.map((spec, index) => {
+            const IconComponent = iconMap[spec.icon] || HeartHandshake;
+            return (
+              <motion.div 
+                key={spec.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="min-w-[280px] snap-start flex-shrink-0 bg-white rounded-xl border border-novara-border shadow-sm p-6 flex flex-col"
+              >
+                <div className="w-12 h-12 bg-novara-accent/10 rounded-xl flex items-center justify-center mb-4 shrink-0">
+                  <IconComponent className="w-6 h-6 text-novara-accent" />
+                </div>
+                <h3 className="font-DM_Serif_Display text-2xl text-novara-text mb-2">{spec.name}</h3>
+                <p className="font-DM_Sans text-sm text-novara-accent font-medium mt-1 mb-4">{spec.tagline}</p>
+                <ul className="space-y-2 mb-8 flex-grow">
+                  {spec.conditions.slice(0, 3).map((condition, i) => (
+                    <li key={i} className="flex items-start gap-2 font-DM_Sans text-sm text-novara-muted">
+                      <CheckCircle2 className="w-4 h-4 text-novara-primary mt-0.5 shrink-0" />
+                      <span>{condition}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="outline" to={`/specialities/${spec.slug}`} className="w-full text-sm mt-auto border-novara-primary text-novara-primary hover:bg-novara-primary hover:text-white">
+                  Learn More
+                </Button>
+              </motion.div>
+            );
+          })}
+        </div>
+        {/* Right-edge fade scroll hint */}
+        <div className="absolute right-0 top-0 bottom-4 w-12 bg-gradient-to-l from-novara-bg to-transparent pointer-events-none" />
       </div>
       
     </div>
@@ -192,23 +231,20 @@ const FeaturedDoctorsSection = () => {
         
         <div className="relative mt-10">
           <div className="overflow-hidden px-4 -mx-4 lg:px-0 lg:mx-0">
-            <div className="flex md:hidden overflow-x-auto gap-4 pb-4 snap-x snap-mandatory">
+            <div className="flex md:hidden overflow-x-auto gap-3 pb-4 snap-x snap-mandatory">
               {doctors.map((doc) => (
                 <div 
                   key={`mobile-${doc.id}`}
-                  className="min-w-[280px] snap-start flex-shrink-0 bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden"
+                  className="min-w-[200px] snap-start flex-shrink-0 bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden"
                 >
-                  <div className="aspect-square overflow-hidden">
-                    <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" />
+                  <div className="h-40 overflow-hidden">
+                    <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" loading="lazy" />
                   </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <Badge className="mb-4 self-start">{doc.speciality}</Badge>
-                    <h3 className="font-DM_Serif_Display text-xl text-novara-text mb-2">{doc.name}</h3>
-                    <div className="mb-6 flex-grow">
-                      <p className="font-DM_Sans text-sm text-novara-muted mt-1">{doc.qualification}</p>
-                      <p className="font-DM_Sans text-sm text-novara-accent font-medium mt-1">{doc.experience} Years Experience</p>
-                    </div>
-                    <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-sm mt-auto">
+                  <div className="p-4 flex flex-col flex-grow">
+                    <Badge className="mb-2 self-start text-xs">{doc.speciality}</Badge>
+                    <h3 className="font-DM_Serif_Display text-base text-novara-text mb-1 leading-snug">{doc.name}</h3>
+                    <p className="font-DM_Sans text-xs text-novara-accent font-medium mb-3">{doc.experience} yrs exp.</p>
+                    <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-xs mt-auto py-2">
                       View Profile
                     </Button>
                   </div>
@@ -304,23 +340,28 @@ const PatientStoriesSection = () => (
         align="center"
       />
       
-      <div className="flex overflow-x-auto lg:grid grid-cols-1 md:grid-cols-3 gap-6 pb-8 lg:pb-0 snap-x snap-mandatory">
-        {patientStories.slice(0, 3).map((story, index) => (
-          <div key={story.id} className="min-w-[300px] lg:min-w-0 snap-start bg-novara-bg rounded-xl p-8 relative flex flex-col">
-            <Quote className="absolute top-6 right-6 w-10 h-10 text-novara-accent/10" />
-            <div className="flex items-center gap-1 mb-6">
-              {[...Array(5)].map((_, i) => <span key={i} className="text-[#C9A84C]">★</span>)}
+      {/* Scroll wrapper with right-edge fade on mobile */}
+      <div className="relative">
+        <div className="flex overflow-x-auto lg:grid grid-cols-1 md:grid-cols-3 gap-6 pb-8 lg:pb-0 snap-x snap-mandatory">
+          {patientStories.slice(0, 3).map((story, index) => (
+            <div key={story.id} className="min-w-[300px] lg:min-w-0 snap-start bg-novara-bg rounded-xl p-8 relative flex flex-col">
+              <Quote className="absolute top-6 right-6 w-10 h-10 text-novara-accent/10" />
+              <div className="flex items-center gap-1 mb-6">
+                {[...Array(5)].map((_, i) => <span key={i} className="text-[#C9A84C]">★</span>)}
+              </div>
+              <p className="font-DM_Sans text-base italic text-novara-text leading-relaxed flex-grow mb-8">
+                "{story.story}"
+              </p>
+              <div>
+                <p className="font-DM_Sans font-semibold text-novara-text">{story.name}</p>
+                <p className="font-DM_Sans text-sm text-novara-muted mb-2">{story.location}</p>
+                <Badge>{story.speciality}</Badge>
+              </div>
             </div>
-            <p className="font-DM_Sans text-base italic text-novara-text leading-relaxed flex-grow mb-8">
-              "{story.story}"
-            </p>
-            <div>
-              <p className="font-DM_Sans font-semibold text-novara-text">{story.name}</p>
-              <p className="font-DM_Sans text-sm text-novara-muted mb-2">{story.location}</p>
-              <Badge>{story.speciality}</Badge>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        {/* Right-edge fade scroll hint (mobile only) */}
+        <div className="lg:hidden absolute right-0 top-0 bottom-8 w-14 bg-gradient-to-l from-white to-transparent pointer-events-none" />
       </div>
     </div>
   </section>
@@ -356,39 +397,45 @@ const BlogSection = () => (
         heading="Stay Informed, Stay Healthy"
       />
       
-      <div className="flex overflow-x-auto lg:grid grid-cols-1 md:grid-cols-3 gap-6 pb-8 lg:pb-0 snap-x snap-mandatory">
-        {blogs.slice(0, 3).map((blog, index) => {
-          const blogImages = [
-            "https://images.unsplash.com/photo-1758691461935-202e2ef6b69f?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1706353399656-210cca727a33?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1758691463110-697a814b2033?w=600&auto=format&fit=crop&q=60"
-          ];
-          return (
-          <div key={blog.id} className="min-w-[300px] lg:min-w-0 snap-start bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden h-full">
-            <div className="aspect-[16/9] overflow-hidden">
-              <img src={blogImages[index]} alt="Blog feature" className="w-full h-full object-cover object-center rounded-t-xl" />
-            </div>
-            <div className="p-6 flex flex-col flex-grow">
-              <div className="flex items-center justify-between">
-                <Badge>{blog.category}</Badge>
-                <span className="font-DM_Sans text-xs text-novara-muted">{blog.readTime}</span>
+      {/* Scroll wrapper with right-edge fade on mobile */}
+      <div className="relative">
+        <div className="flex overflow-x-auto lg:grid grid-cols-1 md:grid-cols-3 gap-6 pb-8 lg:pb-0 snap-x snap-mandatory">
+          {blogs.slice(0, 3).map((blog, index) => {
+            const blogImages = [
+              "https://images.unsplash.com/photo-1758691461935-202e2ef6b69f?w=600&auto=format&fit=crop&q=60",
+              "https://images.unsplash.com/photo-1706353399656-210cca727a33?w=600&auto=format&fit=crop&q=60",
+              "https://images.unsplash.com/photo-1758691463110-697a814b2033?w=600&auto=format&fit=crop&q=60"
+            ];
+            return (
+              <div key={blog.id} className="min-w-[300px] lg:min-w-0 snap-start bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden h-full">
+                <div className="aspect-[16/9] overflow-hidden">
+                  <img src={blogImages[index]} alt="Blog feature" className="w-full h-full object-cover object-center rounded-t-xl" />
+                </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex items-center justify-between">
+                    <Badge>{blog.category}</Badge>
+                    <span className="font-DM_Sans text-xs text-novara-muted">{blog.readTime}</span>
+                  </div>
+                  <h3 className="font-DM_Serif_Display text-xl text-novara-text mt-3 leading-snug">
+                    <Link to={`/blog/${blog.slug}`} className="hover:text-novara-accent transition-colors">{blog.title}</Link>
+                  </h3>
+                  <p className="font-DM_Sans text-sm text-novara-muted mt-2 line-clamp-2 leading-relaxed flex-grow">
+                    {blog.excerpt}
+                  </p>
+                  <span className="font-DM_Sans text-xs text-novara-muted mt-3">{blog.author || 'Dr. Sarah Wilson'}</span>
+                  <div className="flex items-center justify-between mt-1">
+                    <span className="font-DM_Sans text-xs text-novara-muted">{blog.date}</span>
+                    <Link to={`/blog/${blog.slug}`} className="font-DM_Sans text-sm font-semibold text-novara-accent hover:opacity-80 mt-auto">
+                      Read More →
+                    </Link>
+                  </div>
+                </div>
               </div>
-              <h3 className="font-DM_Serif_Display text-xl text-novara-text mt-3 leading-snug">
-                <Link to={`/blog/${blog.slug}`} className="hover:text-novara-accent transition-colors">{blog.title}</Link>
-              </h3>
-              <p className="font-DM_Sans text-sm text-novara-muted mt-2 line-clamp-2 leading-relaxed flex-grow">
-                {blog.excerpt}
-              </p>
-              <span className="font-DM_Sans text-xs text-novara-muted mt-3">{blog.author || 'Dr. Sarah Wilson'}</span>
-              <div className="flex items-center justify-between mt-1">
-                <span className="font-DM_Sans text-xs text-novara-muted">{blog.date}</span>
-                <Link to={`/blog/${blog.slug}`} className="font-DM_Sans text-sm font-semibold text-novara-accent hover:opacity-80 mt-auto">
-                  Read More →
-                </Link>
-              </div>
-            </div>
-          </div>
-        )})}
+            );
+          })}
+        </div>
+        {/* Right-edge fade scroll hint (mobile only) */}
+        <div className="lg:hidden absolute right-0 top-0 bottom-8 w-14 bg-gradient-to-l from-novara-bg to-transparent pointer-events-none" />
       </div>
       
       <div className="text-center mt-8">

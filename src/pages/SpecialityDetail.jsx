@@ -182,14 +182,14 @@ const SpecialityDetail = () => {
               heading={`${speciality.name} Specialists`}
               align="center"
             />
-            <div className={`flex flex-wrap justify-center overflow-x-auto md:overflow-visible gap-6 pb-4 mt-12 snap-x snap-mandatory ${departmentDoctors.length >= 3 ? 'md:grid md:grid-cols-2 lg:grid-cols-3' : ''}`}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
               {departmentDoctors.map((doc) => (
                 <div 
                   key={doc.id}
-                  className={`min-w-[280px] w-full snap-start ${departmentDoctors.length < 3 ? 'md:max-w-[350px] md:shrink-0' : 'md:min-w-0'} bg-novara-bg rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden`}
+                  className={`bg-novara-bg rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden ${departmentDoctors.length === 1 ? 'sm:max-w-sm sm:mx-auto sm:col-span-2 lg:col-span-3' : ''}`}
                 >
                   <div className="aspect-square overflow-hidden">
-                    <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" />
+                    <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" loading="lazy" />
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
                     <Badge className="mb-4 self-start bg-white">{doc.speciality}</Badge>

@@ -55,7 +55,7 @@ const BlogPost = () => {
 
       {/* Content Section */}
       <section className="py-12 md:py-16 px-4 md:px-6">
-        <div className="container mx-auto max-w-3xl bg-white p-8 md:p-12 rounded-2xl border border-novara-border shadow-sm">
+        <div className="container mx-auto max-w-3xl bg-white p-6 md:p-12 rounded-2xl border border-novara-border shadow-sm">
           <div className="font-DM_Sans text-novara-text text-lg leading-relaxed space-y-6">
             <p className="font-medium text-xl text-novara-muted mb-8 italic border-l-4 border-novara-accent pl-4">
               {blog.excerpt}

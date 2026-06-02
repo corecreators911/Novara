@@ -15,7 +15,7 @@ const DoctorProfileCard = ({ doctor }) => {
       transition={{ duration: 0.3 }}
       className="bg-white rounded-xl border border-novara-border shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col sm:flex-row"
     >
-      <div className="w-full sm:w-2/5 aspect-square sm:aspect-auto sm:min-h-full shrink-0 relative">
+      <div className="w-full h-56 sm:h-auto sm:w-2/5 sm:aspect-auto sm:min-h-full shrink-0 relative overflow-hidden">
         <img 
           src={doctor.image} 
           alt={doctor.name} 
