@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { blogs } from '../data/blogs';
 import Badge from '../components/ui/Badge';
+import PageHero from '../components/ui/PageHero';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,28 +30,10 @@ const Blog = () => {
 
   return (
     <div className="bg-novara-bg min-h-screen pb-20">
-      {/* Hero Section */}
-      <section className="bg-novara-primary text-white py-20 px-4 md:px-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-        <div className="container mx-auto max-w-5xl relative z-10 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="font-DM_Serif_Display text-4xl md:text-5xl lg:text-6xl mb-6"
-          >
-            Health & Wellness Insights
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-DM_Sans text-lg md:text-xl text-white/80 max-w-2xl mx-auto"
-          >
-            Expert advice, medical breakthroughs, and healthy living tips directly from the specialists at Novara Hospital.
-          </motion.p>
-        </div>
-      </section>
+      <PageHero
+        title="Health & Wellness Insights"
+        subtitle="Expert advice, medical breakthroughs, and healthy living tips directly from the specialists at Novara Hospital."
+      />
 
       {/* Blog Grid */}
       <section className="py-16 md:py-24 px-4 md:px-6">
