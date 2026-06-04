@@ -52,6 +52,7 @@ function SpecialityRow({ speciality, isLast }) {
         <Link
           to={`/specialities/${speciality.slug}`}
           className="mt-8 inline-flex items-center gap-2 font-DM_Sans text-sm font-semibold text-novara-primary hover:text-novara-accent group transition-colors duration-300"
+          aria-label={`Learn more about ${speciality.name}`}
         >
           Learn More
           <ArrowRight
@@ -68,6 +69,9 @@ function SpecialityRow({ speciality, isLast }) {
             src={speciality.image}
             alt={speciality.name}
             className="w-full h-full object-cover transition-transform duration-500 ease-out hover:scale-105"
+            loading="lazy"
+            width="800"
+            height="600"
           />
         </div>
       </div>

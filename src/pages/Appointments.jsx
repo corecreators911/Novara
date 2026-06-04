@@ -58,11 +58,11 @@ const CalendarPicker = ({ selectedDate, onChange, maxMonths = 2 }) => {
   return (
     <div className="bg-white border border-novara-border rounded-xl p-4 font-DM_Sans shadow-sm">
       <div className="flex justify-between items-center mb-4">
-        <button type="button" onClick={prevMonth} className="p-1.5 hover:bg-novara-bg rounded-md text-novara-primary transition-colors"><ChevronLeft size={18}/></button>
+        <button type="button" onClick={prevMonth} className="p-1.5 hover:bg-novara-bg rounded-md text-novara-primary transition-colors" aria-label="Previous month"><ChevronLeft size={18}/></button>
         <div className="font-semibold text-novara-primary">
           {currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}
         </div>
-        <button type="button" onClick={nextMonth} className="p-1.5 hover:bg-novara-bg rounded-md text-novara-primary transition-colors"><ChevronRight size={18}/></button>
+        <button type="button" onClick={nextMonth} className="p-1.5 hover:bg-novara-bg rounded-md text-novara-primary transition-colors" aria-label="Next month"><ChevronRight size={18}/></button>
       </div>
       <div className="grid grid-cols-7 gap-1 text-center mb-2">
         {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(d => <div key={d} className="text-xs text-novara-muted font-medium">{d}</div>)}
@@ -283,29 +283,29 @@ const Appointments = () => {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-novara-text">First Name *</label>
-                    <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.firstName ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} placeholder="John" />
+                    <label htmlFor="appt-first-name" className="text-sm font-medium text-novara-text">First Name *</label>
+                    <input id="appt-first-name" type="text" name="firstName" value={formData.firstName} onChange={handleChange} className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.firstName ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} placeholder="John" />
                     {errors.firstName && <span className="text-red-500 text-xs">{errors.firstName}</span>}
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-novara-text">Last Name *</label>
-                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.lastName ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} placeholder="Doe" />
+                    <label htmlFor="appt-last-name" className="text-sm font-medium text-novara-text">Last Name *</label>
+                    <input id="appt-last-name" type="text" name="lastName" value={formData.lastName} onChange={handleChange} className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.lastName ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} placeholder="Doe" />
                     {errors.lastName && <span className="text-red-500 text-xs">{errors.lastName}</span>}
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-novara-text">Email Address</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full p-3 rounded-lg border border-novara-border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 focus:border-novara-accent transition-colors" placeholder="john.doe@example.com" />
+                    <label htmlFor="appt-email" className="text-sm font-medium text-novara-text">Email Address</label>
+                    <input id="appt-email" type="email" name="email" value={formData.email} onChange={handleChange} className="w-full p-3 rounded-lg border border-novara-border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 focus:border-novara-accent transition-colors" placeholder="john.doe@example.com" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-novara-text">Phone Number *</label>
+                    <label htmlFor="appt-phone" className="text-sm font-medium text-novara-text">Phone Number *</label>
                     <div className="flex gap-2">
-                      <select name="countryCode" value={formData.countryCode} onChange={handleChange} className="p-3 bg-white rounded-lg border border-novara-border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 focus:border-novara-accent transition-colors w-24">
+                      <select id="appt-country-code" name="countryCode" value={formData.countryCode} onChange={handleChange} className="p-3 bg-white rounded-lg border border-novara-border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 focus:border-novara-accent transition-colors w-24">
                         <option value="+1">+1</option>
                         <option value="+44">+44</option>
                         <option value="+91">+91</option>
                         <option value="+61">+61</option>
                       </select>
-                      <input type="tel" name="phone" maxLength="10" value={formData.phone} onChange={(e) => {
+                      <input id="appt-phone" type="tel" name="phone" maxLength="10" value={formData.phone} onChange={(e) => {
                         const val = e.target.value.replace(/\D/g, '');
                         if (val.length <= 10) handleChange({ target: { name: 'phone', value: val } });
                       }} className={`flex-1 p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.phone ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} placeholder="5550000000" />
@@ -313,8 +313,8 @@ const Appointments = () => {
                     {errors.phone && <span className="text-red-500 text-xs">{errors.phone}</span>}
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-novara-text">Date of Birth *</label>
-                    <input type="date" name="dob" max={new Date().toISOString().split('T')[0]} value={formData.dob} onChange={handleChange} className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.dob ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} />
+                    <label htmlFor="appt-dob" className="text-sm font-medium text-novara-text">Date of Birth *</label>
+                    <input id="appt-dob" type="date" name="dob" max={new Date().toISOString().split('T')[0]} value={formData.dob} onChange={handleChange} className={`w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.dob ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`} />
                     {errors.dob && <span className="text-red-500 text-xs">{errors.dob}</span>}
                   </div>
                 </div>
@@ -333,8 +333,8 @@ const Appointments = () => {
                  <h2 className="text-2xl font-DM_Serif_Display text-novara-primary">Department & Doctor</h2>
 
                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-novara-text">Select Department *</label>
-                    <select name="speciality" value={formData.speciality} onChange={handleSpecialityChange} className={`w-full p-3 bg-white rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.speciality ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`}>
+                    <label htmlFor="appt-speciality" className="text-sm font-medium text-novara-text">Select Department *</label>
+                    <select id="appt-speciality" name="speciality" value={formData.speciality} onChange={handleSpecialityChange} className={`w-full p-3 bg-white rounded-lg border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 transition-colors ${errors.speciality ? 'border-red-500' : 'border-novara-border focus:border-novara-accent'}`}>
                       <option value="">-- Choose a specialisation --</option>
                       {specialities.map(s => (
                         <option key={s.id} value={s.name}>{s.name}</option>
@@ -351,7 +351,7 @@ const Appointments = () => {
                          {availableDoctors.map(doctor => (
                            <label key={doctor.id} className={`flex items-center p-4 border rounded-xl cursor-pointer transition-all duration-200 ${formData.doctorId == doctor.id ? 'border-novara-accent bg-novara-accent/5 ring-1 ring-novara-accent shadow-sm' : 'border-novara-border hover:border-novara-primary/30'}`}>
                              <input type="radio" name="doctorId" value={doctor.id} checked={formData.doctorId == doctor.id} onChange={handleChange} className="hidden" />
-                             <img src={doctor.image} alt={doctor.name} className="w-16 h-16 rounded-full object-cover mr-4 shrink-0" />
+                             <img src={doctor.image} alt={doctor.name} className="w-16 h-16 rounded-full object-cover mr-4 shrink-0" loading="lazy" />
                              <div>
                                <p className="font-semibold text-novara-primary">{doctor.name}</p>
                                <p className="text-sm text-novara-muted">{doctor.qualification}</p>
@@ -415,8 +415,8 @@ const Appointments = () => {
                  </div>
 
                  <div className="space-y-2 pt-4">
-                    <label className="text-sm font-medium text-novara-text">Additional Notes (Optional)</label>
-                    <textarea name="notes" value={formData.notes} onChange={handleChange} rows="3" className="w-full p-3 rounded-lg border border-novara-border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 focus:border-novara-accent transition-colors resize-none" placeholder="Any specific symptoms or questions?"></textarea>
+                    <label htmlFor="appt-notes" className="text-sm font-medium text-novara-text">Additional Notes (Optional)</label>
+                    <textarea id="appt-notes" name="notes" value={formData.notes} onChange={handleChange} rows="3" className="w-full p-3 rounded-lg border border-novara-border focus:outline-none focus:ring-2 focus:ring-novara-accent/20 focus:border-novara-accent transition-colors resize-none" placeholder="Any specific symptoms or questions?"></textarea>
                  </div>
               </motion.div>
             )}
@@ -446,7 +446,7 @@ const Appointments = () => {
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-novara-border pb-4">
                       <div className="flex items-center gap-4">
                         {selectedDoctor?.image ? (
-                           <img src={selectedDoctor.image} alt={selectedDoctor.name} className="w-12 h-12 rounded-full object-cover shrink-0" />
+                           <img src={selectedDoctor.image} alt={selectedDoctor.name} className="w-12 h-12 rounded-full object-cover shrink-0" loading="lazy" />
                         ) : (
                            <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center shrink-0">
                              <User size={24} className="text-gray-400" />

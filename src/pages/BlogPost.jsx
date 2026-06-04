@@ -60,22 +60,11 @@ const BlogPost = () => {
             <p className="font-medium text-xl text-novara-muted mb-8 italic border-l-4 border-novara-accent pl-4">
               {blog.excerpt}
             </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.
-            </p>
-            <h2 className="font-DM_Serif_Display text-2xl md:text-3xl text-novara-text mt-10 mb-5">Understanding the Basics</h2>
-            <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
-            </p>
-            <ul className="list-disc list-inside space-y-2 mt-4 text-novara-muted">
-              <li>Regular screenings are essential for early detection.</li>
-              <li>A balanced diet contributes significantly to your overall well-being.</li>
-              <li>Always consult with a specialist before making drastic lifestyle changes.</li>
-            </ul>
-            <h2 className="font-DM_Serif_Display text-2xl md:text-3xl text-novara-text mt-10 mb-5">Moving Forward</h2>
-            <p>
-              Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-            </p>
+            {blog.content && blog.content.map((paragraph, i) => (
+              <p key={i} className="leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </div>
       </section>

@@ -175,6 +175,8 @@ const PatientInformation = () => {
                   <button 
                     className="w-full text-left px-6 py-4 flex justify-between items-center gap-4 focus:outline-none hover:bg-novara-bg/50 transition-colors"
                     onClick={() => toggleFaq(idx)}
+                    aria-expanded={openFaq === idx}
+                    aria-controls={`faq-answer-${idx}`}
                   >
                     <span className="font-DM_Sans font-medium text-novara-text">{faq.question}</span>
                     <div className="text-novara-accent flex-shrink-0">
@@ -189,7 +191,7 @@ const PatientInformation = () => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div className="px-6 pb-4 text-novara-muted font-DM_Sans">
+                        <div id={`faq-answer-${idx}`} className="px-6 pb-4 text-novara-muted font-DM_Sans">
                           {faq.answer}
                         </div>
                       </motion.div>

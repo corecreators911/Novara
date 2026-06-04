@@ -85,6 +85,8 @@ const SpecialityDetail = () => {
                 src={speciality.image} 
                 alt={`${speciality.name} Department`} 
                 className="w-full h-full object-cover rounded-2xl shadow-sm"
+                width="800"
+                height="600"
               />
             </div>
 
@@ -189,7 +191,7 @@ const SpecialityDetail = () => {
                   className={`bg-novara-bg rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden ${departmentDoctors.length === 1 ? 'sm:max-w-sm sm:mx-auto sm:col-span-2 lg:col-span-3' : ''}`}
                 >
                   <div className="aspect-square overflow-hidden">
-                    <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" loading="lazy" />
+                    <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" loading="lazy" width="400" height="400" />
                   </div>
                   <div className="p-6 flex flex-col flex-grow">
                     <Badge className="mb-4 self-start bg-white">{doc.speciality}</Badge>
@@ -198,7 +200,7 @@ const SpecialityDetail = () => {
                       <p className="font-DM_Sans text-sm text-novara-muted mt-1">{doc.qualification}</p>
                       <p className="font-DM_Sans text-sm text-novara-accent font-medium mt-1">{doc.experience} Years Experience</p>
                     </div>
-                    <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-sm mt-auto bg-white">
+                    <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-sm mt-auto bg-white" aria-label={`View profile of ${doc.name}`}>
                       View Profile
                     </Button>
                   </div>

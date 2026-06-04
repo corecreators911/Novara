@@ -20,6 +20,9 @@ const DoctorProfileCard = ({ doctor }) => {
           src={doctor.image} 
           alt={doctor.name} 
           className="w-full h-full object-cover object-top absolute inset-0"
+          loading="lazy"
+          width="400"
+          height="400"
         />
       </div>
       
@@ -46,7 +49,7 @@ const DoctorProfileCard = ({ doctor }) => {
           <Button variant="primary" to="/appointments" className="w-full sm:w-auto flex-1">
             Book Visit
           </Button>
-          <Button variant="outline" to={`/doctors/${doctor.slug}`} className="w-full sm:w-auto flex-1">
+          <Button variant="outline" to={`/doctors/${doctor.slug}`} className="w-full sm:w-auto flex-1" aria-label={`View profile of ${doctor.name}`}>
             Profile
           </Button>
         </div>

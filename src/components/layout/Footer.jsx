@@ -15,7 +15,7 @@ const Footer = () => {
             <p className="font-DM_Sans text-novara-accent text-sm font-medium tracking-widest uppercase mb-4">
               Where Expertise Meets Compassion
             </p>
-            <p className="font-DM_Sans text-white/70 text-sm leading-relaxed max-w-xs">
+            <p className="font-DM_Sans text-white/90 text-sm leading-relaxed max-w-xs">
               Providing world-class healthcare with a human touch since 2004. Your health is our greatest priority.
             </p>
           </div>
@@ -71,11 +71,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
-          <p className="font-DM_Sans text-xs text-white/60">
+        <div className="border-t border-white/20 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
+          <p className="font-DM_Sans text-xs text-white/80">
             © 2026 Novara Hospital. All rights reserved.
           </p>
-          <p className="font-DM_Sans text-xs text-white/40">
+          <p className="font-DM_Sans text-xs text-white/80">
             Designed for excellence in healthcare.
           </p>
         </div>

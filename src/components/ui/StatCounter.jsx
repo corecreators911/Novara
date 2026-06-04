@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const formatIndian = (num) => {
   return Math.round(num).toLocaleString('en-IN')
@@ -9,7 +9,12 @@ export function StatCounter({ target, suffix, label, duration = 2 }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
   const motionValue = useMotionValue(0)
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+  }, [])
 
   useEffect(() => {
     if (prefersReducedMotion) {

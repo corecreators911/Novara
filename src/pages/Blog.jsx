@@ -68,6 +68,16 @@ const Blog = () => {
                 variants={cardVariants}
                 className="bg-white border border-novara-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group"
               >
+                <div className="aspect-[16/9] overflow-hidden shrink-0">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    width="800"
+                    height="450"
+                  />
+                </div>
                 <div className="p-8 flex flex-col flex-grow">
                   <div className="mb-4">
                     <Badge>{post.category}</Badge>
@@ -98,6 +108,7 @@ const Blog = () => {
                     <Link 
                       to={`/blog/${post.slug}`}
                       className="inline-flex items-center font-DM_Sans text-sm font-bold text-novara-primary hover:text-novara-accent transition-colors"
+                      aria-label={`Read full article: ${post.title}`}
                     >
                       Read Article
                       <ArrowRight className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" />
@@ -120,7 +131,9 @@ const Blog = () => {
             Subscribe to our newsletter to receive the latest health updates and expert advice directly in your inbox.
           </p>
           <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
+            <label htmlFor="newsletter-email" className="sr-only">Email address</label>
             <input 
+              id="newsletter-email"
               type="email" 
               placeholder="Enter your email address" 
               className="flex-grow px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base"

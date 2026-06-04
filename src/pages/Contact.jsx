@@ -139,23 +139,23 @@ const Contact = () => {
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="font-DM_Sans text-sm font-semibold text-novara-text">First Name</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base transition-colors" placeholder="John" required />
+                    <label htmlFor="contact-first-name" className="font-DM_Sans text-sm font-semibold text-novara-text">First Name</label>
+                    <input id="contact-first-name" type="text" className="w-full px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base transition-colors" placeholder="John" required />
                   </div>
                   <div className="space-y-2">
-                    <label className="font-DM_Sans text-sm font-semibold text-novara-text">Last Name</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base transition-colors" placeholder="Doe" required />
+                    <label htmlFor="contact-last-name" className="font-DM_Sans text-sm font-semibold text-novara-text">Last Name</label>
+                    <input id="contact-last-name" type="text" className="w-full px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base transition-colors" placeholder="Doe" required />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="font-DM_Sans text-sm font-semibold text-novara-text">Email Address</label>
-                  <input type="email" className="w-full px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base transition-colors" placeholder="johndoe@example.com" required />
+                  <label htmlFor="contact-email" className="font-DM_Sans text-sm font-semibold text-novara-text">Email Address</label>
+                  <input id="contact-email" type="email" className="w-full px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base transition-colors" placeholder="johndoe@example.com" required />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="font-DM_Sans text-sm font-semibold text-novara-text">Subject</label>
-                  <select className="w-full px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base bg-white transition-colors">
+                  <label htmlFor="contact-subject" className="font-DM_Sans text-sm font-semibold text-novara-text">Subject</label>
+                  <select id="contact-subject" className="w-full px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base bg-white transition-colors">
                     <option>General Inquiry</option>
                     <option>Appointment Booking</option>
                     <option>Feedback & Suggestions</option>
@@ -164,8 +164,8 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="font-DM_Sans text-sm font-semibold text-novara-text">Message</label>
-                  <textarea rows="4" className="w-full px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base resize-none transition-colors" placeholder="How can we help you?" required></textarea>
+                  <label htmlFor="contact-message" className="font-DM_Sans text-sm font-semibold text-novara-text">Message</label>
+                  <textarea id="contact-message" rows="4" className="w-full px-4 py-3 rounded-lg border border-novara-border focus:outline-none focus:border-novara-accent focus:ring-1 focus:ring-novara-accent font-DM_Sans text-base resize-none transition-colors" placeholder="How can we help you?" required></textarea>
                 </div>
 
                 <button 

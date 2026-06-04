@@ -49,6 +49,9 @@ const HeroSection = () => (
         src="https://images.unsplash.com/photo-1777269749032-d8d458ae594d?q=80&w=1074&auto=format&fit=crop" 
         alt="Novara Hospital Facility" 
         className="w-full h-full object-cover top-0 m-0 p-0 absolute"
+        fetchpriority="high"
+        width="1074"
+        height="716"
       />
     </div>
   </section>
@@ -118,7 +121,7 @@ const SpecialitiesSection = () => (
                   </li>
                 ))}
               </ul>
-              <Button variant="outline" to={`/specialities/${spec.slug}`} className="w-full text-sm mt-auto border-novara-primary text-novara-primary hover:bg-novara-primary hover:text-white">
+              <Button variant="outline" to={`/specialities/${spec.slug}`} className="w-full text-sm mt-auto border-novara-primary text-novara-primary hover:bg-novara-primary hover:text-white" aria-label={`Learn more about ${spec.name}`}>
                 Learn More
               </Button>
             </motion.div>
@@ -153,7 +156,7 @@ const SpecialitiesSection = () => (
                     </li>
                   ))}
                 </ul>
-                <Button variant="outline" to={`/specialities/${spec.slug}`} className="w-full text-sm mt-auto border-novara-primary text-novara-primary hover:bg-novara-primary hover:text-white">
+                <Button variant="outline" to={`/specialities/${spec.slug}`} className="w-full text-sm mt-auto border-novara-primary text-novara-primary hover:bg-novara-primary hover:text-white" aria-label={`Learn more about ${spec.name}`}>
                   Learn More
                 </Button>
               </motion.div>
@@ -177,6 +180,9 @@ const WhyChooseSection = () => (
             src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&auto=format&fit=crop&q=60" 
             alt="Doctor examining patient" 
             className="max-h-[480px] w-full object-cover object-center rounded-2xl shadow-lg"
+            loading="lazy"
+            width="600"
+            height="450"
           />
         </div>
         <div className="order-1 lg:order-2">
@@ -197,7 +203,7 @@ const WhyChooseSection = () => (
                   {feature.icon}
                 </div>
                 <div>
-                  <h4 className="font-DM_Sans text-lg font-semibold text-novara-text">{feature.title}</h4>
+                  <h3 className="font-DM_Sans text-lg font-semibold text-novara-text">{feature.title}</h3>
                   <p className="font-DM_Sans text-sm text-novara-muted mt-1 leading-relaxed">{feature.desc}</p>
                 </div>
               </div>
@@ -238,13 +244,13 @@ const FeaturedDoctorsSection = () => {
                   className="min-w-[200px] snap-start flex-shrink-0 bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden"
                 >
                   <div className="h-40 overflow-hidden">
-                    <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" loading="lazy" />
+                    <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" loading="lazy" width="200" height="160" />
                   </div>
                   <div className="p-4 flex flex-col flex-grow">
                     <Badge className="mb-2 self-start text-xs">{doc.speciality}</Badge>
                     <h3 className="font-DM_Serif_Display text-base text-novara-text mb-1 leading-snug">{doc.name}</h3>
                     <p className="font-DM_Sans text-xs text-novara-accent font-medium mb-3">{doc.experience} yrs exp.</p>
-                    <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-xs mt-auto py-2">
+                    <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-xs mt-auto py-2" aria-label={`View profile of ${doc.name}`}>
                       View Profile
                     </Button>
                   </div>
@@ -267,7 +273,7 @@ const FeaturedDoctorsSection = () => {
                       className="w-full bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden"
                     >
                       <div className="aspect-square overflow-hidden">
-                        <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" />
+                        <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top" loading="lazy" width="400" height="400" />
                       </div>
                       <div className="p-6 flex flex-col flex-grow">
                         <Badge className="mb-4 self-start">{doc.speciality}</Badge>
@@ -276,7 +282,7 @@ const FeaturedDoctorsSection = () => {
                           <p className="font-DM_Sans text-sm text-novara-muted mt-1">{doc.qualification}</p>
                           <p className="font-DM_Sans text-sm text-novara-accent font-medium mt-1">{doc.experience} Years Experience</p>
                         </div>
-                        <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-sm mt-auto">
+                        <Button variant="outline" to={`/doctors/${doc.slug}`} className="w-full text-sm mt-auto" aria-label={`View profile of ${doc.name}`}>
                           View Profile
                         </Button>
                       </div>
@@ -293,12 +299,18 @@ const FeaturedDoctorsSection = () => {
             <div className="flex justify-center gap-2">
               <button 
                 onClick={() => setCurrentIndex(0)}
-                className={`w-3 h-3 rounded-full transition-colors ${currentIndex < 3 ? 'bg-novara-accent' : 'bg-transparent border border-novara-accent'}`}
-              />
+                className="w-10 h-10 flex items-center justify-center rounded-full transition-colors"
+                aria-label="Go to page 1"
+              >
+                <span className={`w-3 h-3 rounded-full transition-colors ${currentIndex < 3 ? 'bg-novara-accent' : 'bg-transparent border border-novara-accent'}`} />
+              </button>
               <button 
                 onClick={() => setCurrentIndex(3)}
-                className={`w-3 h-3 rounded-full transition-colors ${currentIndex === 3 ? 'bg-novara-accent' : 'bg-transparent border border-novara-accent'}`}
-              />
+                className="w-10 h-10 flex items-center justify-center rounded-full transition-colors"
+                aria-label="Go to page 2"
+              >
+                <span className={`w-3 h-3 rounded-full transition-colors ${currentIndex === 3 ? 'bg-novara-accent' : 'bg-transparent border border-novara-accent'}`} />
+              </button>
             </div>
             
             <div className="flex justify-end gap-4 pr-1">
@@ -306,6 +318,7 @@ const FeaturedDoctorsSection = () => {
                 onClick={prevSlide}
                 disabled={currentIndex === 0}
                 className={`w-12 h-12 rounded-full bg-white border border-novara-border shadow-sm flex items-center justify-center transition-opacity z-10 ${currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50'}`}
+                aria-label="Previous doctors"
               >
                 <ChevronLeft className="w-6 h-6 text-novara-primary" />
               </button>
@@ -314,6 +327,7 @@ const FeaturedDoctorsSection = () => {
                 onClick={nextSlide}
                 disabled={currentIndex === maxIndex}
                 className={`w-12 h-12 rounded-full bg-white border border-novara-border shadow-sm flex items-center justify-center transition-opacity z-10 ${currentIndex === maxIndex ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50'}`}
+                aria-label="Next doctors"
               >
                 <ChevronRight className="w-6 h-6 text-novara-primary" />
               </button>
@@ -400,16 +414,11 @@ const BlogSection = () => (
       {/* Scroll wrapper with right-edge fade on mobile */}
       <div className="relative">
         <div className="flex overflow-x-auto lg:grid grid-cols-1 md:grid-cols-3 gap-6 pb-8 lg:pb-0 snap-x snap-mandatory">
-          {blogs.slice(0, 3).map((blog, index) => {
-            const blogImages = [
-              "https://images.unsplash.com/photo-1758691461935-202e2ef6b69f?w=600&auto=format&fit=crop&q=60",
-              "https://images.unsplash.com/photo-1706353399656-210cca727a33?w=600&auto=format&fit=crop&q=60",
-              "https://images.unsplash.com/photo-1758691463110-697a814b2033?w=600&auto=format&fit=crop&q=60"
-            ];
+          {blogs.slice(0, 3).map((blog) => {
             return (
               <div key={blog.id} className="min-w-[300px] lg:min-w-0 snap-start bg-white rounded-xl border border-novara-border shadow-sm flex flex-col overflow-hidden h-full">
                 <div className="aspect-[16/9] overflow-hidden">
-                  <img src={blogImages[index]} alt="Blog feature" className="w-full h-full object-cover object-center rounded-t-xl" />
+                  <img src={blog.image} alt={blog.title} className="w-full h-full object-cover object-center rounded-t-xl" loading="lazy" width="800" height="450" />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center justify-between">
@@ -422,10 +431,10 @@ const BlogSection = () => (
                   <p className="font-DM_Sans text-sm text-novara-muted mt-2 line-clamp-2 leading-relaxed flex-grow">
                     {blog.excerpt}
                   </p>
-                  <span className="font-DM_Sans text-xs text-novara-muted mt-3">{blog.author || 'Dr. Sarah Wilson'}</span>
+                  <span className="font-DM_Sans text-xs text-novara-muted mt-3">{blog.author}</span>
                   <div className="flex items-center justify-between mt-1">
                     <span className="font-DM_Sans text-xs text-novara-muted">{blog.date}</span>
-                    <Link to={`/blog/${blog.slug}`} className="font-DM_Sans text-sm font-semibold text-novara-accent hover:opacity-80 mt-auto">
+                    <Link to={`/blog/${blog.slug}`} className="font-DM_Sans text-sm font-semibold text-novara-accent hover:opacity-80 mt-auto" aria-label={`Read more about ${blog.title}`}>
                       Read More →
                     </Link>
                   </div>

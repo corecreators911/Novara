@@ -108,6 +108,8 @@ const About = () => {
                 alt="Novara Hospital Facade" 
                 className="rounded-2xl shadow-sm w-full object-cover aspect-[4/3]"
                 loading="lazy"
+                width="1200"
+                height="900"
               />
               <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-lg border border-novara-border hidden md:block">
                 <p className="font-DM_Serif_Display text-4xl text-novara-accent mb-1">2004</p>
@@ -149,6 +151,8 @@ const About = () => {
                     alt={leader.name} 
                     className="w-full h-full object-cover object-top"
                     loading="lazy"
+                    width="800"
+                    height="600"
                   />
                 </div>
                 <div className="p-8 flex flex-col flex-grow">
