@@ -49,7 +49,7 @@ const HeroSection = () => (
         src="https://images.unsplash.com/photo-1777269749032-d8d458ae594d?q=80&w=1074&auto=format&fit=crop" 
         alt="Novara Hospital Facility" 
         className="w-full h-full object-cover top-0 m-0 p-0 absolute"
-        fetchpriority="high"
+        fetchPriority="high"
         width="1074"
         height="716"
       />

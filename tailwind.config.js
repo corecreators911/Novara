@@ -19,9 +19,9 @@ export default {
       },
       fontFamily: {
         'DM_Serif_Display': ['DM Serif Display', 'serif'],
-        'DM_Sans': ['DM Sans', 'sans-serif'],
+        'DM_Sans': ['DM Sans Variable', 'DM Sans', 'sans-serif'],
         'Syne': ['Syne', 'sans-serif'],
-        'Space_Grotesk': ['Space Grotesk', 'sans-serif'],
+        'Space_Grotesk': ['Space Grotesk Variable', 'Space Grotesk', 'sans-serif'],
       }
     },
   },
