@@ -14,7 +14,7 @@ import { StatCounter } from '../components/ui/StatCounter';
 const HeroSection = () => (
   <section className="relative min-h-screen flex items-center bg-novara-bg m-0 p-0 -mt-[100px] pt-[100px]">
     <div className="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 items-center z-10 relative m-0 p-0">
-      <div className="max-w-2xl text-center lg:text-left relative z-20">
+      <div className="max-w-2xl mx-auto lg:mx-0 w-full text-center lg:text-left relative z-20">
         <Badge className="mb-6 mx-auto lg:mx-0">India's Premier Multispeciality Care</Badge>
         <h1 className="font-DM_Serif_Display text-novara-text text-4xl md:text-5xl lg:text-7xl leading-[1.08] tracking-tight mb-6 lg:text-white">
           <span className="lg:hidden">Where Expertise Meets Compassion</span>
@@ -61,16 +61,16 @@ const TrustStatsSection = () => (
   <section className="bg-novara-primary py-16">
     <div className="container mx-auto px-4 md:px-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 lg:gap-0">
-        <div className="lg:py-14 lg:border-r lg:border-white/10">
+        <div className="lg:py-14 lg:px-4 lg:border-r lg:border-white/10">
           <StatCounter target={25} suffix="+" label="Specialities" duration={1.8} />
         </div>
-        <div className="lg:py-14 lg:border-r lg:border-white/10">
+        <div className="lg:py-14 lg:px-4 lg:border-r lg:border-white/10">
           <StatCounter target={500} suffix="+" label="Doctors" duration={2.0} />
         </div>
-        <div className="lg:py-14 lg:border-r lg:border-white/10">
+        <div className="lg:py-14 lg:px-4 lg:border-r lg:border-white/10">
           <StatCounter target={200000} suffix="+" label="Patients Served" duration={2.2} />
         </div>
-        <div className="lg:py-14">
+        <div className="lg:py-14 lg:px-4">
           <StatCounter target={2004} suffix="" label="Established" duration={2.4} />
         </div>
       </div>

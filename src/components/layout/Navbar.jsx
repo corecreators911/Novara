@@ -104,7 +104,8 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+              style={{ willChange: 'opacity' }}
               className="fixed inset-0 bg-black/50 z-[60] lg:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
@@ -112,7 +113,8 @@ const Navbar = () => {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+              style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}
               className="fixed top-0 right-0 bottom-0 w-[80%] max-w-[320px] bg-novara-primary z-[70] p-6 flex flex-col lg:hidden overflow-y-auto"
             >
               <div className="flex justify-end mb-8">
